@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Purchase</title>
+</head>
+<body>
+    <h1>Create Purchase</h1>
+    <form action="/submit_purchase" method="POST">
+        <label for="customer_id">Customer ID:</label>
+        <input type="text" id="customer_id" name="customer_id" required><br><br>
+
+        <label for="product_id">Product ID:</label>
+        <input type="text" id="product_id" name="product_id" required><br><br>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" required><br><br>
+
+        <label for="date_of_purchase">Date of Purchase:</label>
+        <input type="date" id="date_of_purchase" name="date_of_purchase" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

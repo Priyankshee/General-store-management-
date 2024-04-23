@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Product</title>
+</head>
+<body>
+  <main>
+    <h1>Create New Product</h1>
+
+    <form method="POST" action="/submit_product">  
+        <label for="productid">Product ID:</label>
+        <input type="text" id="productid" name="productid" required><br><br>
+
+        <label for="prodname">Product Name:</label>
+        <input type="text" id="prodname" name="prodname" required><br><br>
+
+        <label for="costprice">Cost Price:</label>
+        <input type="number" id="costprice" name="costprice" required><br><br> 
+
+        <label for="price">Selling Price:</label>
+        <input type="number" id="price" name="price" required><br><br> 
+        
+        <label for="quantity">Stock Quantity:</label>
+        <input type="number" id="quantity" name="quantity" required><br><br>
+
+        <label for="supplier_id">Supplier ID:</label>
+        <input type="text" id="supplier_id" name="supplier_id" required><br><br>
+
+        <button type="submit">Create Product</button>
+    </form>
+  </main>
+</body>
+</html>

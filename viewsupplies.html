@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Supplies</title>
+</head>
+<body>
+    <h1>View Supplies</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Supplier ID</th>
+                <th>Product ID</th>
+                <th>Stock Quantity</th>
+                <th>Stock Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for supply in supplies %}
+            <tr>
+                <td>{{ supply.supplier_id }}</td>
+                <td>{{ supply.prod_id }}</td>
+                <td id="quantity{{ supply.supplier_id }}{{ supply.prod_id }}">{{ supply.stock_quantity }}</td>
+                <td id="date{{ supply.supplier_id }}{{ supply.prod_id }}">{{ supply.stock_date }}</td>
+                <td>
+                    <form id="updateQuantityForm{{ supply.supplier_id }}{{ supply.prod_id }}" action="/update_supply_quantity" method="post">
+                        <input type="hidden" name="supplier_id" value="{{ supply.supplier_id }}">
+                        <input type="hidden" name="prod_id" value="{{ supply.prod_id }}">
+                        <input type="text" name="new_quantity" placeholder="New Quantity">
+                        <button type="button" onclick="updateQuantity('{{ supply.supplier_id }}', '{{ supply.prod_id }}')">Update Quantity</button>
+                    </form>
+                    <form id="updateDateForm{{ supply.supplier_id }}{{ supply.prod_id }}" action="/update_supply_date" method="post">
+                        <input type="hidden" name="supplier_id" value="{{ supply.supplier_id }}">
+                        <input type="hidden" name="prod_id" value="{{ supply.prod_id }}">
+                        <input type="date" name="new_date" placeholder="New Date">
+                        <button type="button" onclick="updateDate('{{ supply.supplier_id }}', '{{ supply.prod_id }}')">Update Date</button>
+                    </form>
+                    <form id="deleteForm{{ supply.supplier_id }}{{ supply.prod_id }}" action="/delete_supply" method="post">
+                        <input type="hidden" name="supplier_id" value="{{ supply.supplier_id }}">
+                        <input type="hidden" name="prod_id" value="{{ supply.prod_id }}">
+                        <button type="button" onclick="deleteSupply('{{ supply.supplier_id }}', '{{ supply.prod_id }}')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <script>
+        function updateQuantity(supplierId, prodId) {
+            // Submit the form for updating quantity
+            document.getElementById('updateQuantityForm' + supplierId + prodId).submit();
+        }
+
+        function updateDate(supplierId, prodId) {
+            // Submit the form for updating date
+            document.getElementById('updateDateForm' + supplierId + prodId).submit();
+        }
+
+        function deleteSupply(supplierId, prodId) {
+            // Submit the form for deleting supply
+            document.getElementById('deleteForm' + supplierId + prodId).submit();
+        }
+    </script>
+</body>
+</html>

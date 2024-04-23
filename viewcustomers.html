@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Customers</title>
+</head>
+<body>
+    <h1>View Customers</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Customer ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in customers %}
+            <tr>
+                <td>{{ customer.customerid }}</td>
+                <td>{{ customer.customername }}</td>
+                <td>{{ customer.phno }}</td>
+                <td>
+                    <form action="/update_customer" method="post">
+                        <input type="hidden" name="customer_id" value="{{ customer.customerid }}">
+                        <input type="text" name="new_name" placeholder="New Name">
+                        <input type="text" name="new_phone" placeholder="New Phone">
+                        <button type="submit">Update</button>
+                    </form>
+                    <form action="/delete_customer" method="post">
+                        <input type="hidden" name="customer_id" value="{{ customer.customerid }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

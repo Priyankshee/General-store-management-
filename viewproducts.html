@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Products</title>
+</head>
+<body>
+    <h1>View Products</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Cost Price</th>
+                <th>Selling Price</th>
+                <th>Quantity</th>
+                <th>Supplier ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.productid }}</td>
+                <td>{{ product.prodname }}</td>
+                <td>{{ product.costprice }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.supplier_id }}</td>
+                <td>
+                    <form action="/update_product" method="post">
+                        <input type="hidden" name="product_id" value="{{ product.productid }}">
+                        <input type="text" name="new_name" placeholder="New Name">
+                        <input type="text" name="new_costprice" placeholder="New Cost Price">
+                        <input type="text" name="new_price" placeholder="New Selling Price">
+                        <input type="text" name="new_quantity" placeholder="New Quantity">
+                        <button type="submit">Update</button>
+                    </form>
+                    <form action="/delete_product" method="post">
+                        <input type="hidden" name="product_id" value="{{ product.productid }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

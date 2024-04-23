@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Suppliers</title>
+</head>
+<body>
+    <h1>View Suppliers</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Supplier ID</th>
+                <th>Supplier Name</th>
+                <th>Phone Number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for supplier in suppliers %}
+            <tr>
+                <td>{{ supplier.supplierid }}</td>
+                <td>{{ supplier.suppliername }}</td>
+                <td>{{ supplier.phno }}</td>
+                <td>
+                    <form action="/update_supplier" method="post">
+                        <input type="hidden" name="supplier_id" value="{{ supplier.supplierid }}">
+                        <input type="text" name="new_name" placeholder="New Name">
+                        <input type="text" name="new_phone" placeholder="New Phone">
+                        <button type="submit">Update</button>
+                    </form>
+                    <form action="/delete_supplier" method="post">
+                        <input type="hidden" name="supplier_id" value="{{ supplier.supplierid }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

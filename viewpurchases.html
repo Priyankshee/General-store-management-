@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Purchases</title>
+</head>
+<body>
+    <h1>Purchases</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Purchase ID</th>
+                <th>Product ID</th>
+                <th>Customer ID</th>
+                <th>Quantity</th>
+                <th>Date of Purchase</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for purchase in purchases %}
+            <tr>
+                <td>{{ purchase.purchaseid }}</td>
+                <td>{{ purchase.product_id }}</td>
+                <td>{{ purchase.customer_id }}</td>
+                <td>{{ purchase.quantity }}</td>
+                <td id="date{{ purchase.purchaseid }}">{{ purchase.dateofpurchase }}</td>
+                <td>
+                    <form id="updateQuantityForm{{ purchase.purchaseid }}" action="/update_quantity" method="post">
+                        <input type="hidden" name="purchase_id" value="{{ purchase.purchaseid }}">
+                        <input type="text" name="new_quantity" placeholder="New Quantity">
+                        <button type="button" onclick="updateQuantity('{{ purchase.purchaseid }}')">Update Quantity</button>
+                    </form>
+                    <form id="updateDateForm{{ purchase.purchaseid }}" action="/update_date" method="post">
+                        <input type="hidden" name="purchase_id" value="{{ purchase.purchaseid }}">
+                        <input type="date" name="new_date" placeholder="New Date">
+                        <button type="button" onclick="updateDate('{{ purchase.purchaseid }}')">Update Date</button>
+                    </form>
+                    <form action="/delete_purchase" method="post">
+                        <input type="hidden" name="purchase_id" value="{{ purchase.purchaseid }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        function updateQuantity(purchaseId) {
+            // Submit the form for updating quantity
+            document.getElementById('updateQuantityForm' + purchaseId).submit();
+        }
+
+        function updateDate(purchaseId) {
+            // Submit the form for updating date
+            document.getElementById('updateDateForm' + purchaseId).submit();
+        }
+    </script>
+</body>
+</html>

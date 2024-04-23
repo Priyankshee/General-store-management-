@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Supplies</title>
+</head>
+<body>
+    <h1>Add Supplies</h1>
+    <form action="/submit_supplies" method="POST">
+        <label for="supplier_id">Supplier ID:</label>
+        <input type="text" id="supplier_id" name="supplier_id" required><br><br>
+
+        <label for="prod_id">Product ID:</label>
+        <input type="text" id="prod_id" name="prod_id" required><br><br>
+
+        <label for="stock_quantity">Stock Quantity:</label>
+        <input type="number" id="stock_quantity" name="stock_quantity" required><br><br>
+
+        <label for="stock_date">Stock Date:</label>
+        <input type="date" id="stock_date" name="stock_date" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
